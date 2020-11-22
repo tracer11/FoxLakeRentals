@@ -7,9 +7,10 @@ class Post(models.Model):
   available = models.BooleanField(default=True)
   rate = models.IntegerField()
   posted_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+  image = models.FileField(blank=True)
 
 
-class Image(models.Model):
-  post = models.ForeignKey(Post, on_delete=models.CASCADE)
-  image = models.ImageField(upload_to="media/post_images")
+class PostImage(models.Model):
+  post = models.ForeignKey(Post, default=None, on_delete=models.CASCADE)
+  images = models.FileField(upload_to="media/post_images")
 
