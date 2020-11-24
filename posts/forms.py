@@ -4,7 +4,7 @@ from .models import Post, PostImage
 class PostForm(forms.ModelForm):
   class Meta:
     model = Post
-    fields = ['Title', 'description', 'available', 'rate']
+    fields = ['title', 'description', 'rate']
 
 class FullPostForm(PostForm):
   images = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple':True}))
