@@ -28,8 +28,10 @@ def createPostView(request):
       post_obj = Post.objects.create(title=title, description=description, rate=rate, posted_by=user)
       for f in files:
         PostImage.objects.create(post=post_obj, image=f)
-    else:
-      messages.error('Form is Invalid')
+  else:
+    form = FullPostForm()
+
+  return render(request, 'posts/post_create.html', {'form' : form})
 
 
 
