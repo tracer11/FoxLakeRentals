@@ -1,0 +1,10 @@
+{% extends 'posts/base.html' %}
+{% block content %}
+  {% if posts %}
+    {% for post in posts %}
+      <h1>{{post.title}}</h1>
+    {% endfor %}
+  {% else %}
+    <h1>No Posts Yet!</h1>
+  {% endif %}
+{% endblock content %}
