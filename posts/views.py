@@ -3,7 +3,7 @@ from django.views.generic import ListView
 from django.forms import modelformset_factory
 from django.contrib import messages
 from .models import Post, PostImage
-from .forms import PostForm, PostImageForm 
+from .forms import PostForm, PostImageForm
 
 # Create your views here.
 
@@ -27,15 +27,15 @@ def createPostView(request):
 
     if postForm.is_valid() and formset.is_valid():
       post_form = postForm.save(commit=False)
-      post_form.posted_by = request.user 
+      post_form.posted_by = request.user
       post_form.save()
 
-      for form in formset:
+      for form in formset.cleaned_data:
         if form:
           image = form['image']
           photo = PostImage(post=post_form, image=image)
           photo.save()
-      messages.success("Posting crated!")
+      messages.success(request, "Posting crated!")
 
     else:
       messages.error(postForm.errors, formset.errors)
