@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView
 from django.forms import modelformset_factory
 from django.contrib import messages
@@ -36,6 +36,7 @@ def createPostView(request):
           photo = PostImage(post=post_form, image=image)
           photo.save()
       messages.success(request, "Posting crated!")
+      return redirect('posts-home')
 
     else:
       messages.error(postForm.errors, formset.errors)
