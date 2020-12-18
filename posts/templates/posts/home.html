@@ -3,7 +3,7 @@
   {% if posts %}
     {% for post in posts %}
       <h1>{{post.title}}</h1>
-      <img src="{{post.postimage_set.first.image.url}}" style="width:300px;height:300px">
+      <img src="{{post.postimage_set.first.image.url}}">
     {% endfor %}
   {% else %}
     <h1>No Posts Yet!</h1>
