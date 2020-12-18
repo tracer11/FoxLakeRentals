@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView
+from django.contrib.auth.decorators import login_required
 from django.forms import modelformset_factory
 from django.contrib import messages
 from .models import Post, PostImage
@@ -17,6 +18,7 @@ def detailPostView(request, id):
   photos = PostImage.objects.filter(post=post)
   return render(request, 'post-detail', {'photos':photos, 'post':post})
 
+@login_required
 def createPostView(request):
 
   ImageFormSet = modelformset_factory(PostImage, form=PostImageForm, extra=5)
